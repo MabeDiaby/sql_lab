@@ -44,9 +44,12 @@ SELECT AVG(salary) from players WHERE position = 'DE'
 
 -- 12. The names of all the players on the Buffalo Bills
 
-SELECT player.name FROM teams JOIN players ON (teams.name = 'Buffalo Bills' )
+SELECT players.name FROM players p JOIN teams t ON p.team_id = t.id WHERE t.name = 'Buffalo Bills';
 
 -- 13. The total salary of all players on the New York Giants
 
+SELECT SUM(salary) FROM players p JOIN teams t ON p.team_id = t.id WHERE t.name = 'New York Giants';
 
 -- 14. The player with the lowest salary on the Green Bay Packers
+
+SELECT players.name, salary FROM players p JOIN teams t ON p.team_id = t.id WHERE t.name = 'Green Bay Packers' AND salary = (SELECT MIN(salary) FROM players JOIN teams ON p.team_id = t.id WHERE t.name = 'Green Bay Packers');
