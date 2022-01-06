@@ -53,3 +53,7 @@ SELECT SUM(salary) FROM players p JOIN teams t ON p.team_id = t.id WHERE t.name 
 -- 14. The player with the lowest salary on the Green Bay Packers
 
 SELECT players.name, salary FROM players p JOIN teams t ON p.team_id = t.id WHERE t.name = 'Green Bay Packers' AND salary = (SELECT MIN(salary) FROM players JOIN teams ON p.team_id = t.id WHERE t.name = 'Green Bay Packers');
+
+-- OR
+
+SELECT players.name FROM players JOIN teams ON players.team_id = teams.id WHERE teams.name = 'Green Bay Packers' ORDER BY salary ASC LIMIT 1;
